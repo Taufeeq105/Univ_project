@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
+import plotly.figure_factory as ff
 
 
 st.title('DE Lab Dashboard')
@@ -13,12 +13,10 @@ data = {"calories":a1,"duration":a2}
 df = pd.DataFrame(data)
 
 if sel=='query1':
-  fig, ax = plt.subplots()
-  ax.hist(df['duration'])
-  st.pyplot(fig)
+  fig = ff.create_distplot(a1, 'q1')
+  st.plotly_chart(fig, use_container_width=True)
   
 if sel=='query2':
-  fig, ax = plt.subplots()
-  ax.hist(df['calories'])
-  st.pyplot(fig)
+  fig = ff.create_distplot(a2, 'q2')
+  st.plotly_chart(fig, use_container_width=True)
   
